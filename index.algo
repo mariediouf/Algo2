@@ -1,0 +1,38 @@
+ALGORITHM SommeElementDistinct
+VAR
+    tab1 : ARRAY_OF INTEGER[4];
+    tab2 : ARRAY_OF INTEGER[5];   
+    somme-distinct,somme1, somme2, i, j : INTEGER
+    verify : BOOLEAN
+BEGIN
+    tab1 := [3,1,7,9]
+    tab2 := [2,4,1,9,3]
+    somme-distinct := 0
+    somme1 := 0
+    somme2 := 0
+    verify := true
+
+    FOR i FROM 0 TO tab1.length - 1 STEP 1  DO
+        FOR j FROM 0 TO tab2.length - 1 STEP 1  DO
+            IF (tab1[i] === tab2[j]) THEN
+                verify := false // l'élément n'est pas distinct
+                END_IF
+                IF (verify === true) THEN
+                    somme1 := somme1 + tab1[i]
+                END_IF
+        END_FOR
+    END_FOR
+
+    FOR j FROM 0 TO tab2.length - 1 STEP 1 DO
+        FOR i FROM 0 TO tab1.length - 1 STEP 1  DO
+            IF (tab2[j] === tab1[i]) THEN
+                verify := false
+            END_IF
+            IF (verify === true) THEN
+                somme2 := somme2 + tab2[j]
+            END_IF
+        END_FOR
+    END_FOR
+    somme-distinct := somme1 + somme2
+    Write("la somme des elements distinct est", somme-distinct)
+END
